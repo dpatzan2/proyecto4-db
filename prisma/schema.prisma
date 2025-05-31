@@ -1,0 +1,315 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// -------------------------------
+// ENUMS
+// -------------------------------
+
+// Estado del estudiante
+enum EstadoEstudiante {
+  ACTIVO
+  INACTIVO
+  EGRESADO
+}
+
+// Estado del curso
+enum EstadoCurso {
+  ACTIVO
+  INACTIVO
+  CANCELADO
+}
+
+// Estado de la inscripción
+enum EstadoInscripcion {
+  REGISTRADA
+  COMPLETADA
+  CANCELADA
+}
+
+// Tipo de calificación
+enum TipoCalificacion {
+  PARCIAL
+  FINAL
+  PROYECTO
+  OTRO
+}
+
+// Tipo de usuario
+enum TipoUsuario {
+  ESTUDIANTE
+  PROFESOR
+  ADMINISTRATIVO
+}
+
+// -------------------------------
+// MODELS
+// -------------------------------
+
+model universidades {
+  id              Int                   @id @default(autoincrement())
+  nombre          String                @db.VarChar(200)
+  codigo          String                @unique @db.VarChar(10)
+  direccion       String?               @db.Text
+  telefono        String?               @db.VarChar(20)
+  email           String?               @db.VarChar(100)
+  rector          String?               @db.VarChar(100)
+  fecha_fundacion DateTime?
+  created_at      DateTime              @default(now())
+  updated_at      DateTime              @updatedAt
+
+  facultades      facultades[]
+  periodos        periodos_academicos[]
+}
+
+model facultades {
+  id                Int            @id @default(autoincrement())
+  universidad_id    Int
+  nombre            String         @db.VarChar(150)
+  codigo            String         @unique @db.VarChar(10)
+  decano            String?        @db.VarChar(100)
+  telefono          String?        @db.VarChar(20)
+  email             String?        @db.VarChar(100)
+  presupuesto_anual Decimal?       @db.Decimal(12,2)
+  created_at        DateTime       @default(now())
+  updated_at        DateTime       @updatedAt
+
+  universidad       universidades  @relation(fields: [universidad_id], references: [id])
+  departamentos     departamentos[]
+  aulas             aulas[]
+}
+
+model departamentos {
+  id                  Int             @id @default(autoincrement())
+  facultad_id         Int
+  nombre              String          @db.VarChar(150)
+  codigo              String          @unique @db.VarChar(10)
+  jefe_departamento   String?         @db.VarChar(100)
+  telefono            String?         @db.VarChar(20)
+  email               String?         @db.VarChar(100)
+  presupuesto         Decimal?        @db.Decimal(10,2)
+  created_at          DateTime        @default(now())
+  updated_at          DateTime        @updatedAt
+
+  facultad            facultades      @relation(fields: [facultad_id], references: [id])
+  carreras            carreras[]
+  profesores          profesores[]
+  materias            materias[]
+}
+
+model carreras {
+  id                   Int             @id @default(autoincrement())
+  departamento_id      Int
+  nombre               String          @db.VarChar(150)
+  codigo               String          @unique @db.VarChar(10)
+  duracion_semestres   Int?
+  creditos_requeridos  Int?
+  modalidad            String?         @db.VarChar(50)
+  titulo_otorgado      String?         @db.VarChar(150)
+  coordinador          String?         @db.VarChar(100)
+  created_at           DateTime        @default(now())
+  updated_at           DateTime        @updatedAt
+
+  departamento         departamentos   @relation(fields: [departamento_id], references: [id])
+  plan_estudios        plan_estudios[]
+  estudiantes          estudiantes[]
+}
+
+model materias {
+  id                Int              @id @default(autoincrement())
+  departamento_id   Int
+  nombre            String           @db.VarChar(150)
+  codigo            String           @unique @db.VarChar(10)
+  creditos          Int?
+  horas_teoricas    Int?
+  horas_practicas   Int?
+  descripcion       String?          @db.Text
+  es_obligatoria    Boolean?
+  semestre_sugerido Int?
+  created_at        DateTime         @default(now())
+  updated_at        DateTime         @updatedAt
+
+  departamento      departamentos    @relation(fields: [departamento_id], references: [id])
+  plan_estudios     plan_estudios[]
+  prerrequisitos    prerrequisitos[] @relation("materia_prerrequisito")
+  prerrequisitos_de prerrequisitos[] @relation("prerrequisito_materia")
+  cursos            cursos[]
+}
+
+model profesores {
+  id                 Int           @id @default(autoincrement())
+  departamento_id    Int
+  codigo_empleado    String        @unique @db.VarChar(20)
+  nombres            String        @db.VarChar(100)
+  apellidos          String        @db.VarChar(100)
+  cedula             String?       @db.VarChar(20)
+  fecha_nacimiento   DateTime?
+  fecha_contratacion DateTime?
+  titulo_academico   String?       @db.VarChar(150)
+  especialidad       String?       @db.VarChar(100)
+  salario            Decimal?      @db.Decimal(10,2)
+  tipo_contrato      String?       @db.VarChar(50)
+  estado             EstadoCurso?
+  email              String?       @db.VarChar(100)
+  telefono           String?       @db.VarChar(20)
+  direccion          String?       @db.Text
+  created_at         DateTime      @default(now())
+  updated_at         DateTime      @updatedAt
+
+  departamento       departamentos @relation(fields: [departamento_id], references: [id])
+  cursos             cursos[]
+}
+
+model estudiantes {
+  id                 Int                @id @default(autoincrement())
+  carrera_id         Int
+  codigo_estudiante  String             @unique @db.VarChar(20)
+  nombres            String             @db.VarChar(100)
+  apellidos          String             @db.VarChar(100)
+  cedula             String?            @db.VarChar(20)
+  fecha_nacimiento   DateTime?
+  fecha_ingreso      DateTime?
+  email              String?            @db.VarChar(100)
+  telefono           String?            @db.VarChar(20)
+  direccion          String?            @db.Text
+  semestre_actual    Int?
+  creditos_aprobados Int?
+  promedio_acumulado Decimal?           @db.Decimal(5,2)
+  estado             EstadoEstudiante?
+  created_at         DateTime           @default(now())
+  updated_at         DateTime           @updatedAt
+
+  carrera            carreras           @relation(fields: [carrera_id], references: [id])
+  inscripciones      inscripciones[]
+}
+
+model periodos_academicos {
+  id                          Int       @id @default(autoincrement())
+  universidad_id              Int
+  nombre                      String    @db.VarChar(50)
+  codigo                      String    @db.VarChar(15)
+  fecha_inicio                DateTime
+  fecha_fin                   DateTime
+  fecha_inscripcion_inicio    DateTime
+  fecha_inscripcion_fin       DateTime
+  es_activo                   Boolean
+  tipo                        String    @db.VarChar(20)
+  created_at                  DateTime  @default(now())
+  updated_at                  DateTime  @updatedAt
+
+  universidad                 universidades @relation(fields: [universidad_id], references: [id])
+  cursos                      cursos[]
+}
+
+model cursos {
+  id                     Int                  @id @default(autoincrement())
+  materia_id             Int
+  profesor_id            Int
+  periodo_academico_id   Int
+  seccion                String               @db.VarChar(10)
+  cupos_maximos          Int?
+  cupos_disponibles      Int?
+  horario                String?              @db.Text
+  aula                   String?              @db.VarChar(50)
+  estado                 EstadoCurso?
+  created_at             DateTime             @default(now())
+  updated_at             DateTime             @updatedAt
+
+  materia                materias             @relation(fields: [materia_id], references: [id])
+  profesor               profesores           @relation(fields: [profesor_id], references: [id])
+  periodo_academico      periodos_academicos  @relation(fields: [periodo_academico_id], references: [id])
+  horarios               horarios[]
+  inscripciones          inscripciones[]
+}
+
+model aulas {
+  id                    Int         @id @default(autoincrement())
+  facultad_id           Int
+  codigo                String      @db.VarChar(20)
+  nombre                String      @db.VarChar(100)
+  capacidad             Int?
+  tipo                  String?     @db.VarChar(50)
+  tiene_proyector       Boolean?
+  tiene_aire_acondicionado Boolean?
+  piso                  Int?
+  edificio              String?     @db.VarChar(50)
+  created_at            DateTime    @default(now())
+  updated_at            DateTime    @updatedAt
+
+  facultad              facultades  @relation(fields: [facultad_id], references: [id])
+  horarios              horarios[]
+}
+
+model horarios {
+  id           Int      @id @default(autoincrement())
+  curso_id     Int
+  aula_id      Int
+  dia_semana   String   @db.VarChar(15)
+  hora_inicio  DateTime 
+  hora_fin     DateTime
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  curso        cursos   @relation(fields: [curso_id], references: [id])
+  aula         aulas    @relation(fields: [aula_id], references: [id])
+}
+
+model inscripciones {
+  id                  Int       @id @default(autoincrement())
+  estudiante_id       Int
+  curso_id            Int
+  fecha_inscripcion   DateTime  @default(now())
+  estado              EstadoInscripcion?
+  created_at          DateTime  @default(now())
+  updated_at          DateTime  @updatedAt
+
+  estudiante          estudiantes @relation(fields: [estudiante_id], references: [id])
+  curso               cursos      @relation(fields: [curso_id], references: [id])
+  calificaciones      calificaciones[]
+}
+
+model calificaciones {
+  id                 Int              @id @default(autoincrement())
+  inscripcion_id     Int
+  tipo               TipoCalificacion?
+  nombre_evaluacion  String?          @db.VarChar(100)
+  calificacion       Decimal          @db.Decimal(5,2)
+  porcentaje         Decimal?         @db.Decimal(5,2)
+  fecha_evaluacion   DateTime?
+  observaciones      String?          @db.Text
+  created_at         DateTime         @default(now())
+  updated_at         DateTime         @updatedAt
+
+  inscripcion        inscripciones    @relation(fields: [inscripcion_id], references: [id])
+}
+
+model prerrequisitos {
+  id                  Int       @id @default(autoincrement())
+  materia_id          Int
+  prerrequisito_id    Int
+  es_correquisito     Boolean?
+  created_at          DateTime  @default(now())
+  updated_at          DateTime  @updatedAt
+
+  materia             materias  @relation("materia_prerrequisito", fields: [materia_id], references: [id])
+  prerrequisito       materias  @relation("prerrequisito_materia", fields: [prerrequisito_id], references: [id])
+}
+
+model plan_estudios {
+  id                Int       @id @default(autoincrement())
+  carrera_id        Int
+  materia_id        Int
+  semestre_sugerido Int?
+  es_obligatoria    Boolean?
+  grupo             String?   @db.VarChar(50)
+  created_at        DateTime  @default(now())
+  updated_at        DateTime  @updatedAt
+
+  carrera           carreras  @relation(fields: [carrera_id], references: [id])
+  materia           materias  @relation(fields: [materia_id], references: [id])
+}
