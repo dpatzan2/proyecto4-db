@@ -3,7 +3,7 @@ import prisma from '../prismaClient.js';
 export function listarFacultadesDeUniversidad(uniId) {
   return prisma.facultades.findMany({
     where: { universidad_id: Number(uniId) },
-    orderBy: { nombre: 'asc' }
+    orderBy: { id: 'asc' }
   });
 }
 

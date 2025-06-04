@@ -1,13 +1,14 @@
 import express from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import universidadesRouter from './routes/universidades.js';
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
-// montas rutas
 app.use('/universidades', universidadesRouter);
 
 const port = process.env.PORT || 3000;

@@ -2,7 +2,7 @@ import prisma from '../prismaClient.js';
 
 export function listarUniversidades() {
   return prisma.universidades.findMany({
-    orderBy: { nombre: 'asc' }
+    orderBy: { id: 'asc' }
   });
 }
 

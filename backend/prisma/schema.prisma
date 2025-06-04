@@ -237,7 +237,7 @@ model aulas {
   tiene_proyector       Boolean?
   tiene_aire_acondicionado Boolean?
   piso                  Int?
-  edificio              String?     @db.VarChar(50)
+  edificio              String?     @db.Va  rChar(50)
   created_at            DateTime    @default(now())
   updated_at            DateTime    @updatedAt
 
@@ -313,3 +313,4 @@ model plan_estudios {
   carrera           carreras  @relation(fields: [carrera_id], references: [id])
   materia           materias  @relation(fields: [materia_id], references: [id])
 }
+  
