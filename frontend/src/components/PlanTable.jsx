@@ -153,12 +153,12 @@ export default function PlanTable({ uniId, facId, depId, carId }) {
           <tbody className="bg-white text-gray-900">
             {list.map(p => (
               <tr key={p.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{p.id}</td>
-                <td className="px-3 py-2">{p.materia_id}</td>
-                <td className="px-3 py-2">{p.semestre_sugerido ?? '—'}</td>
-                <td className="px-3 py-2 text-center">{p.es_obligatoria ? '✔' : '✘'}</td>
-                <td className="px-3 py-2">{p.grupo || '—'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{p.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.materia_id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.semestre_sugerido ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.es_obligatoria ? '✔' : '✘'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.grupo || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={() => setEditingId(p.id)} className="text-green-600">✎</button>
                   <button onClick={() => handleDelete(p.id)} className="text-red-600">🗑</button>
                 </td>

@@ -145,12 +145,12 @@ export default function HorariosTable({ uniId, facId, depId, matId, cursoId }) {
           <tbody className="bg-white text-gray-900">
             {list.map(h=>(
               <tr key={h.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{h.id}</td>
-                <td className="px-3 py-2">{h.aula_id}</td>
-                <td className="px-3 py-2">{h.dia_semana}</td>
-                <td className="px-3 py-2">{h.hora_inicio.slice(0,16).replace('T',' ')}</td>
-                <td className="px-3 py-2">{h.hora_fin.slice(0,16).replace('T',' ')}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{h.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{h.aula_id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{h.dia_semana}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{h.hora_inicio.slice(0,16).replace('T',' ')}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{h.hora_fin.slice(0,16).replace('T',' ')}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(h.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(h.id)} className="text-red-600">🗑</button>
                 </td>

@@ -141,11 +141,11 @@ export default function InscripcionesTable({ uniId, facId, depId, matId, cursoId
           <tbody className="bg-white text-gray-900">
             {list.map(i=>(
               <tr key={i.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{i.id}</td>
-                <td className="px-3 py-2">{i.estudiante_id}</td>
-                <td className="px-3 py-2">{i.fecha_inscripcion.slice(0,10)}</td>
-                <td className="px-3 py-2">{i.estado||'—'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{i.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{i.estudiante_id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{i.fecha_inscripcion.slice(0,10)}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{i.estado||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(i.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(i.id)} className="text-red-600">🗑</button>
                 </td>

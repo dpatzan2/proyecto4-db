@@ -189,21 +189,21 @@ export default function EstudiantesTable({ uniId, facId, depId, carId }) {
           <tbody className="bg-white text-gray-900">
             {list.map(u => (
               <tr key={u.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{u.id}</td>
-                <td className="px-3 py-2">{u.codigo_estudiante}</td>
-                <td className="px-3 py-2">{u.nombres}</td>
-                <td className="px-3 py-2">{u.apellidos}</td>
-                <td className="px-3 py-2">{u.cedula||'—'}</td>
-                <td className="px-3 py-2">{u.fecha_nacimiento?.slice(0,10)||'—'}</td>
-                <td className="px-3 py-2">{u.fecha_ingreso?.slice(0,10)||'—'}</td>
-                <td className="px-3 py-2">{u.email||'—'}</td>
-                <td className="px-3 py-2">{u.telefono||'—'}</td>
-                <td className="px-3 py-2">{u.direccion||'—'}</td>
-                <td className="px-3 py-2">{u.semestre_actual ?? '—'}</td>
-                <td className="px-3 py-2">{u.creditos_aprobados ?? '—'}</td>
-                <td className="px-3 py-2">{u.promedio_acumulado ?? '—'}</td>
-                <td className="px-3 py-2">{u.estado||'—'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{u.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.codigo_estudiante}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.nombres}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.apellidos}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.cedula||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.fecha_nacimiento?.slice(0,10)||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.fecha_ingreso?.slice(0,10)||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.email||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.telefono||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.direccion||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.semestre_actual ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.creditos_aprobados ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.promedio_acumulado ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{u.estado||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={() => setEditingId(u.id)} className="text-green-600">✎</button>
                   <button onClick={() => handleDelete(u.id)} className="text-red-600">🗑</button>
                 </td>

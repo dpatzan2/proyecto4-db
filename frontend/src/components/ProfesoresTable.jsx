@@ -188,22 +188,22 @@ export default function ProfesoresTable({ uniId, facId, depId }) {
           <tbody className="bg-white text-gray-900">
             {list.map(p => (
               <tr key={p.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{p.id}</td>
-                <td className="px-3 py-2">{p.codigo_empleado}</td>
-                <td className="px-3 py-2">{p.nombres}</td>
-                <td className="px-3 py-2">{p.apellidos}</td>
-                <td className="px-3 py-2">{p.cedula||'—'}</td>
-                <td className="px-3 py-2">{p.fecha_nacimiento?.slice(0,10)||'—'}</td>
-                <td className="px-3 py-2">{p.fecha_contratacion?.slice(0,10)||'—'}</td>
-                <td className="px-3 py-2">{p.titulo_academico||'—'}</td>
-                <td className="px-3 py-2">{p.especialidad||'—'}</td>
-                <td className="px-3 py-2">{p.salario ?? '—'}</td>
-                <td className="px-3 py-2">{p.tipo_contrato||'—'}</td>
-                <td className="px-3 py-2">{p.estado||'—'}</td>
-                <td className="px-3 py-2">{p.email||'—'}</td>
-                <td className="px-3 py-2">{p.telefono||'—'}</td>
-                <td className="px-3 py-2">{p.direccion||'—'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{p.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.codigo_empleado}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.nombres}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.apellidos}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.cedula||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.fecha_nacimiento?.slice(0,10)||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.fecha_contratacion?.slice(0,10)||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.titulo_academico||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.especialidad||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.salario ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.tipo_contrato||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.estado||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.email||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.telefono||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.direccion||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(p.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(p.id)} className="text-red-600">🗑</button>
                 </td>

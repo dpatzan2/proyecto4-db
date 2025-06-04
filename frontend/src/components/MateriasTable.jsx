@@ -169,23 +169,23 @@ export default function MateriasTable({ uniId, facId, depId }) {
           <tbody className="bg-white text-gray-900">
             {list.map(m => (
               <tr key={m.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{m.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{m.id}</td>
                 <td
                   className="px-4 py-3 text-center text-blue-600 underline cursor-pointer border border-gray-300"
                   onClick={() => navigate(`/universidades/${uniId}/facultades/${facId}/departamentos/${depId}/materias/${m.id}`)}
                 >
                   {m.nombre}
                 </td>
-                <td className="px-3 py-2">{m.codigo}</td>
-                <td className="px-3 py-2">{m.creditos ?? '—'}</td>
-                <td className="px-3 py-2">{m.horas_teoricas ?? '—'}</td>
-                <td className="px-3 py-2">{m.horas_practicas ?? '—'}</td>
-                <td className="px-3 py-2">{m.descripcion || '—'}</td>
-                <td className="px-3 py-2 text-center">
+                <td className="px-4 py-3 text-center border border-gray-300">{m.codigo}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{m.creditos ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{m.horas_teoricas ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{m.horas_practicas ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{m.descripcion || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   {m.es_obligatoria ? '✔' : '✘'}
                 </td>
-                <td className="px-3 py-2">{m.semestre_sugerido ?? '—'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{m.semestre_sugerido ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(m.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(m.id)} className="text-red-600">🗑</button>
                 </td>

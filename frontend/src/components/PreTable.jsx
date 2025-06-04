@@ -82,7 +82,6 @@ const load = () =>
         </button>
       </form>
 
-      {/* Tabla de listado */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow rounded">
           <thead className="bg-gray-800 text-gray-200">
@@ -95,10 +94,10 @@ const load = () =>
           <tbody className="bg-white text-gray-900">
             {list.map(p => (
               <tr key={p.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{p.id}</td>
-                <td className="px-3 py-2">{p.prerrequisito_id}</td>
-                <td className="px-3 py-2 text-center">{p.es_correquisito ? '✔' : '✘'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{p.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.prerrequisito_id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{p.es_correquisito ? '✔' : '✘'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={() => handleDelete(p.id)} className="text-red-600">🗑</button>
                 </td>
               </tr>

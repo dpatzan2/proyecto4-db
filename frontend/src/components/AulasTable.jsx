@@ -168,20 +168,20 @@ const fields = [
           <tbody className="bg-white text-gray-900">
             {list.map(d=>(
               <tr key={d.id} className="hover:bg-gray-100">
-                <td className="px-4 py-2">{d.id}</td>
-                <td className="px-4 py-2">{d.codigo}</td>
-                <td className="px-4 py-2">{d.nombre}</td>
-                <td className="px-4 py-2">{d.capacidad}</td>
-                <td className="px-4 py-2">{d.tipo}</td>
-                <td className="px-4 py-2 text-center">
-                    {d.tiene_proyector ? '✔' : '—'}
+                <td className="px-4 py-3 text-center border border-gray-300">{d.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{d.codigo}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{d.nombre}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{d.capacidad}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{d.tipo}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
+                    {d.tiene_proyector ? '✔' : '✘'}
                 </td>
-                <td className="px-4 py-2 text-center">
+                <td className="px-4 py-3 text-center border border-gray-300">
                     {d.tiene_aire_acondicionado ? '✔' : '✘'}
                 </td>
-                <td className="px-4 py-2">{d.piso||'—'}</td>
-                <td className="px-4 py-2">{d.edificio||'—'}</td>
-                <td className="px-4 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{d.piso||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{d.edificio||'—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(d.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(d.id)} className="text-red-600">🗑</button>
                 </td>

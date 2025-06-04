@@ -156,20 +156,20 @@ const navigate = useNavigate();
           <tbody className="bg-white text-gray-900">
             {list.map(c=>(
               <tr key={c.id} className="hover:bg-gray-100">
-                <td className="px-4 py-2">{c.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.id}</td>
                 <td
                   className="px-4 py-3 text-center text-blue-600 underline cursor-pointer border border-gray-300"
                   onClick={() => navigate(`/universidades/${uniId}/facultades/${facId}/departamentos/${depId}/carreras/${c.id}`)}
                 >
                   {c.nombre}
                 </td>
-                <td className="px-4 py-2">{c.codigo}</td>
-                <td className="px-4 py-2">{c.duracion_semestres}</td>
-                <td className="px-4 py-2">{c.creditos_requeridos}</td>
-                <td className="px-4 py-2">{c.modalidad || '—'}</td>
-                <td className="px-4 py-2">{c.titulo_otorgado || '—'}</td>
-                <td className="px-4 py-2">{c.coordinador || '—'}</td>
-                <td className="px-4 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{c.codigo}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.duracion_semestres}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.creditos_requeridos}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.modalidad || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.titulo_otorgado || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.coordinador || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(c.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(c.id)} className="text-red-600">🗑</button>
                 </td>

@@ -173,16 +173,16 @@ const navigate = useNavigate();
           <tbody className="bg-white text-gray-900">
             {list.map(c => (
               <tr key={c.id} className="hover:bg-gray-100">
-                <td className="px-3 py-2">{c.id}</td>
-                <td className="px-3 py-2">{c.profesor_id}</td>
-                <td className="px-3 py-2">{c.periodo_academico_id}</td>
-                <td className="px-3 py-2">{c.seccion}</td>
-                <td className="px-3 py-2">{c.cupos_maximos ?? '—'}</td>
-                <td className="px-3 py-2">{c.cupos_disponibles ?? '—'}</td>
-                <td className="px-3 py-2">{c.horario || '—'}</td>
-                <td className="px-3 py-2">{c.aula || '—'}</td>
-                <td className="px-3 py-2">{c.estado || '—'}</td>
-                <td className="px-3 py-2 space-x-2">
+                <td className="px-4 py-3 text-center border border-gray-300">{c.id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.profesor_id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.periodo_academico_id}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.seccion}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.cupos_maximos ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.cupos_disponibles ?? '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.horario || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.aula || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">{c.estado || '—'}</td>
+                <td className="px-4 py-3 text-center border border-gray-300">
                   <button onClick={()=>setEditingId(c.id)} className="text-green-600">✎</button>
                   <button onClick={()=>handleDelete(c.id)} className="text-red-600">🗑</button>
                 </td>
